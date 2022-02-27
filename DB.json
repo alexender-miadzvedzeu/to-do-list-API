@@ -1,1 +1,12 @@
-{"version":"1.0.0","tasks":[]}
+{
+  "version": "1.0.0",
+  "tasks": [
+    {
+      "id": "81e28d89-bf13-58d5-f13d-4866486a2a1f",
+      "title": "Title example",
+      "text": "Lorem text...",
+      "creation_date": "1645966986306",
+      "task_status": "new"
+    }
+  ]
+}
