@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <h1 class="title">To do list API</h1>
+  <h3 class="subtitle">How to use this API?</h1>
+  <div class="section">
+    <h4 class="section-title">Get all tasks</h4>
+    <h5 class="section-sub-title">Code example:</h4>
+    <div class="code-wrapper">
+      <pre class="code">
+        <span class="mb">const</span> <span class="y">getAllTask</span> = <span class="mb">async</span> () => {
+          <span class="mb">const</span> <span class="lb">resopnse</span> = <span class="p">await</span> <span class="y">fetch</span>(<span class="c">'http://localhost:7777/'</span>)
+          <span class="p">return</span> <span class="lb">resopnse</span>;
+        }
+      </pre>
+    </div>
+  </div>
+</body>
+</html>
