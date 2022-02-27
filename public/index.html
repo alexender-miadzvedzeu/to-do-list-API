@@ -12,12 +12,120 @@
   <h3 class="subtitle">How to use this API?</h1>
   <div class="section">
     <h4 class="section-title">Get all tasks</h4>
+    <p>URL: http://localhost:7777/tasks</p>
+    <p>METHOD: get</p>
     <h5 class="section-sub-title">Code example:</h4>
     <div class="code-wrapper">
       <pre class="code">
-        <span class="mb">const</span> <span class="y">getAllTask</span> = <span class="mb">async</span> () => {
-          <span class="mb">const</span> <span class="lb">resopnse</span> = <span class="p">await</span> <span class="y">fetch</span>(<span class="c">'http://localhost:7777/'</span>)
-          <span class="p">return</span> <span class="lb">resopnse</span>;
+        <span class="mb">const</span> <span class="y">getAllTasks</span> = <span class="mb">async</span> () => {
+          <span class="mb">const</span> <span class="lb">resopnse</span> = <span class="p">await</span> <span class="y">fetch</span>(<span class="c">'http://localhost:7777/tasks'</span>)
+          <span class="mb">const</span> <span class="lb">tasks</span> = <span class="p">await</span> <span class="lb">resopnse</span>.<span class="y">json</span>()
+          <span class="p">return</span> <span class="lb">tasks</span>;
+        }
+      </pre>
+    </div>
+  </div>
+  <div class="section">
+    <h4 class="section-title">Post new task</h4>
+    <p>URL: http://localhost:7777/tasks</p>
+    <p>METHOD: post</p>
+    <p>Headers:
+      <pre>
+        {
+          "Content-Type": "application/json"
+        }
+      </pre>
+    </p>
+    <h5 class="section-sub-title">Code example:</h4>
+    <div class="code-wrapper">
+      <pre class="code">
+        <span class="mb">const</span> <span class="y">postNewTask</span> = <span class="mb">async</span> (<span class="llb">task</span>) => {
+          <span class="mb">const</span> <span class="lb">resopnse</span> = <span class="p">await</span> <span class="y">fetch</span>(<span class="c">'http://localhost:7777/tasks'</span>, {
+            <span class="llb">method</span>: <span class="c">'POST'</span>,
+            <span class="llb">headers</span>: {
+              <span class="c">"Content-Type": "application/json"</span>
+            },
+            <span class="llb">body</span>: <span class="llb">JSON</span>.<span class="y">stringify</span>(<span class="llb">task</span>)
+          })
+          <span class="mb">const</span> <span class="lb">request</span> = <span class="p">await</span> <span class="lb">resopnse</span>.<span class="y">json</span>()
+          <span class="p">return</span> <span class="lb">request</span>;          
+        }
+      </pre>
+    </div>
+    <p>Task object should be like this:</p>
+    <div class="code-wrapper">
+      <pre class="code">
+        <span class="mb">const</span> <span class="lb">task</span> = {
+          <span class="llb">title</span>: <span class="c">"Title text"</span>,
+          <span class="llb">text</span>: <span class="c">"Lorem text..."</span>,
+          <span class="llb">creation_date</span>: <span class="c">"1645966986306"</span>, <span class="g">// Date.now()</span>
+          <span class="llb">task_status</span>: <span class="c">"new"</span>
+        }
+      </pre>
+    </div>
+    <div>
+      <h4 class="note">Note!</h4>
+      <p class="note">All task object fields are required</p>
+    </div>
+  </div>
+  <div class="section">
+    <h4 class="section-title">Change task</h4>
+    <p>URL: http://localhost:7777/tasks</p>
+    <p>METHOD: put</p>
+    <p>Headers:
+      <pre>
+        {
+          "Content-Type": "application/json"
+        }
+      </pre>
+    </p>
+    <h5 class="section-sub-title">Code example:</h4>
+    <div class="code-wrapper">
+      <pre class="code">
+        <span class="mb">const</span> <span class="y">postNewTask</span> = <span class="mb">async</span> (<span class="llb">task</span>) => {
+          <span class="mb">const</span> <span class="lb">resopnse</span> = <span class="p">await</span> <span class="y">fetch</span>(<span class="c">'http://localhost:7777/tasks'</span>, {
+            <span class="llb">method</span>: <span class="c">'PUT'</span>,
+            <span class="llb">headers</span>: {
+              <span class="c">"Content-Type": "application/json"</span>
+            },
+            <span class="llb">body</span>: <span class="llb">JSON</span>.<span class="y">stringify</span>(<span class="llb">task</span>)
+          })
+          <span class="mb">const</span> <span class="lb">request</span> = <span class="p">await</span> <span class="lb">resopnse</span>.<span class="y">json</span>()
+          <span class="p">return</span> <span class="lb">request</span>;          
+        }
+      </pre>
+    </div>
+    <p>Task object should be like this:</p>
+    <div class="code-wrapper">
+      <pre class="code">
+        <span class="mb">const</span> <span class="lb">task</span> = {
+          <span class="llb">title</span>: <span class="c">"Title text"</span>,
+          <span class="llb">text</span>: <span class="c">"Lorem text..."</span>,
+          <span class="llb">creation_date</span>: <span class="c">"1645966986306"</span>, <span class="g">// Date.now()</span>
+          <span class="llb">task_status</span>: <span class="c">"new"</span>
+          <span class="llb">id</span>: <span class="c">"...some id from tasks"</span>
+        }
+      </pre>
+    </div>
+    <div>
+      <h4 class="note">Note!</h4>
+      <p class="note">All task object fields are required</p>
+      <p class="note">In put requiest you should add id in to task object</p>
+    </div>
+  </div>
+  <div class="section">
+    <h4 class="section-title">Delete task</h4>
+    <p>URL: http://localhost:7777/tasks?id=...some_task_id</p>
+    <p>METHOD: delete</p>
+    <h5 class="section-sub-title">Code example:</h4>
+    <div class="code-wrapper">
+      <pre class="code">
+        <span class="mb">const</span> <span class="y">deleteTask</span> = <span class="mb">async</span> (<span class="llb">id</span>) => {
+          <span class="mb">const</span> <span class="lb">resopnse</span> = <span class="p">await</span> <span class="y">fetch</span>(<span class="c">`http://localhost:7777/tasks?id=<span class="mb">${</span><span class="llb">id</span><span class="mb">}</span>`</span>, {
+            <span class="llb">method</span>: <span class="c">'DELETE'</span>,
+          })
+          <span class="mb">const</span> <span class="lb">request</span> = <span class="p">await</span> <span class="lb">resopnse</span>.<span class="y">json</span>()
+          <span class="p">return</span> <span class="lb">request</span>;
         }
       </pre>
     </div>
